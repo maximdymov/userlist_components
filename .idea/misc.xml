@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectResources">
+    <resource url="http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" location="$USER_HOME$/AppData/Local/JetBrains/PhpStorm2021.3/extResources/2889bd79_svg11.dtd" />
+    <resource url="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" location="$PROJECT_DIR$" />
+  </component>
+</project>
