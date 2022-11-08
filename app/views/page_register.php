@@ -11,7 +11,7 @@ $this->layout('template', ['title' => 'Регистрация']) ?>
                 <div class="d-flex align-items-center container p-0">
                     <div class="page-logo width-mobile-auto m-0 align-items-center justify-content-center p-0 bg-transparent bg-img-none shadow-0 height-9 border-0">
                         <a href="javascript:void(0)" class="page-logo-link press-scale-down d-flex align-items-center">
-                            <img src="../../public/img/logo.png" alt="SmartAdmin WebApp"
+                            <img src="img/logo.png" alt="SmartAdmin WebApp"
                                  aria-roledescription="logo">
                             <span class="page-logo-text mr-1">Учебный проект</span>
                         </a>
@@ -25,7 +25,7 @@ $this->layout('template', ['title' => 'Регистрация']) ?>
                 </div>
             </div>
             <div class="flex-1"
-                 style="background: url(/public/img/svg/pattern-1.svg) no-repeat center bottom fixed; background-size: cover;">
+                 style="background: url(img/svg/pattern-1.svg) no-repeat center bottom fixed; background-size: cover;">
                 <div class="container py-4 py-lg-5 my-lg-5 px-4 px-sm-0">
                     <div class="row">
                         <div class="col-xl-12">

@@ -4,9 +4,7 @@ if( !session_id() ) @session_start();
 
 use App\Controllers\RegisterController;
 
-require_once 'vendor/autoload.php';
-
-$routes = require_once 'config.php';
+require_once '../vendor/autoload.php';
 
 $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r)
 {

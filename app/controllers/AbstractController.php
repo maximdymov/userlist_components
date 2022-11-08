@@ -12,7 +12,7 @@ abstract class AbstractController
 
     public function __construct()
     {
-        $this->templates = new Engine('app/views');
+        $this->templates = new Engine('../app/views');
         $this->auth = new Auth(new \PDO("mysql:host=localhost;dbname=userlist", 'root', '1234')) ;
     }
 }

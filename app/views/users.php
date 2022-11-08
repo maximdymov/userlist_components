@@ -5,9 +5,9 @@ $this->layout('template', ['title' => 'Главная страница']) ?>
 
 <body class="mod-bg-1 mod-nav-link">
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary bg-primary-gradient">
-    <a class="navbar-brand d-flex align-items-center fw-500" href="users"><img alt="logo"
+    <a class="navbar-brand d-flex align-items-center fw-500" href="/"><img alt="logo"
                                                                                    class="d-inline-block align-top mr-2"
-                                                                                   src="/public/img/logo.png">
+                                                                                   src="img/logo.png">
         Учебный проект</a>
     <button aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
             data-target="#navbarColor02" data-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span>
@@ -66,7 +66,7 @@ $this->layout('template', ['title' => 'Главная страница']) ?>
                         <div class="d-flex flex-row align-items-center">
                                 <span class="status status-<?= $user->status() ?> mr-3">
                                     <span class="rounded-circle profile-image d-block "
-                                          style="background-image:url('../../public/img/demo/avatars/avatar-b.png'); background-size: cover;"></span>
+                                          style="background-image:url('img/demo/avatars/avatar-b.png'); background-size: cover;"></span>
                                 </span>
                             <div class="info-card-text flex-1">
                                 <a href="javascript:void(0);" class="fs-xl text-truncate text-truncate-lg text-info"
@@ -144,16 +144,16 @@ $this->layout('template', ['title' => 'Главная страница']) ?>
     </div>
     <div>
         <ul class="list-table m-0">
-            <li><a href="intel_introduction.html" class="text-secondary fw-700">Home</a></li>
-            <li class="pl-3"><a href="info_app_licensing.html" class="text-secondary fw-700">About</a></li>
+            <li><a href="#" class="text-secondary fw-700">Home</a></li>
+            <li class="pl-3"><a href="#" class="text-secondary fw-700">About</a></li>
         </ul>
     </div>
 </footer>
 
 </body>
 
-<script src="../../public/js/vendors.bundle.js"></script>
-<script src="../../public/js/app.bundle.js"></script>
+<script src="js/vendors.bundle.js"></script>
+<script src="js/app.bundle.js"></script>
 <script>
 
     $(document).ready(function () {
