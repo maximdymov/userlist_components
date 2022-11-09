@@ -6,8 +6,8 @@ $this->layout('template', ['title' => 'Главная страница']) ?>
 <body class="mod-bg-1 mod-nav-link">
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary bg-primary-gradient">
     <a class="navbar-brand d-flex align-items-center fw-500" href="/"><img alt="logo"
-                                                                                   class="d-inline-block align-top mr-2"
-                                                                                   src="img/logo.png">
+                                                                           class="d-inline-block align-top mr-2"
+                                                                           src="img/logo.png">
         Учебный проект</a>
     <button aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
             data-target="#navbarColor02" data-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span>
@@ -39,7 +39,7 @@ $this->layout('template', ['title' => 'Главная страница']) ?>
     <div class="row">
         <div class="col-xl-12">
             <?php if ($thisUser->hasRole(Role::ADMIN)): ?>
-                <a class="btn btn-success" href="create_user">Добавить</a>
+                <a class="btn btn-success" href="/create_user">Добавить</a>
             <?php endif; ?>
 
             <div class="border-faded bg-faded p-3 mb-g d-flex mt-3">
@@ -66,31 +66,36 @@ $this->layout('template', ['title' => 'Главная страница']) ?>
                         <div class="d-flex flex-row align-items-center">
                                 <span class="status status-<?= $user->status() ?> mr-3">
                                     <span class="rounded-circle profile-image d-block "
-                                          style="background-image:url('img/demo/avatars/avatar-b.png'); background-size: cover;"></span>
+                                          style="background-image:url('<?= $user->img() ?>'); background-size: cover;"></span>
                                 </span>
                             <div class="info-card-text flex-1">
-                                <a href="javascript:void(0);" class="fs-xl text-truncate text-truncate-lg text-info"
-                                   data-toggle="dropdown" aria-expanded="false">
-                                    <?= $user->name() ?>
-                                    <i class="fal fas fa-cog fa-fw d-inline-block ml-1 fs-md"></i>
-                                    <i class="fal fa-angle-down d-inline-block ml-1 fs-md"></i>
-                                </a>
-                                <?php if ($thisUser->getEmail() == $user->email() || $thisUser->hasRole(Role::ADMIN)): ?>
+                                <?php if (!($thisUser->getEmail() == $user->email() || $thisUser->hasRole(Role::ADMIN))): ?>
+                                    <a href="/profile/<?= $user->id() ?>" class="fs-xl text-truncate text-truncate-lg text-info"
+                                       data-toggle="dropdown" aria-expanded="false">
+                                        <?= $user->name() ?>
+                                    </a>
+                                <?php else:?>
+                                    <a href="/profile/<?= $user->id() ?>" class="fs-xl text-truncate text-truncate-lg text-info"
+                                       data-toggle="dropdown" aria-expanded="false">
+                                        <?= $user->name() ?>
+                                        <i class="fal fas fa-cog fa-fw d-inline-block ml-1 fs-md"></i>
+                                        <i class="fal fa-angle-down d-inline-block ml-1 fs-md"></i>
+                                    </a>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="edit.php">
+                                        <a class="dropdown-item" href="edit_user/<?= $user->id() ?>">
                                             <i class="fa fa-edit"></i>
                                             Редактировать</a>
-                                        <a class="dropdown-item" href="security.html">
+                                        <a class="dropdown-item" href="security/<?= $user->id() ?>">
                                             <i class="fa fa-lock"></i>
                                             Безопасность</a>
-                                        <a class="dropdown-item" href="status.html">
+                                        <a class="dropdown-item" href="status/<?= $user->id() ?>">
                                             <i class="fa fa-sun"></i>
                                             Установить статус</a>
-                                        <a class="dropdown-item" href="media.html">
+                                        <a class="dropdown-item" href="media/<?= $user->id() ?>">
                                             <i class="fa fa-camera"></i>
                                             Загрузить аватар
                                         </a>
-                                        <a href="#" class="dropdown-item" onclick="return confirm('are you sure?');">
+                                        <a href="delete/<?= $user->id() ?>" class="dropdown-item" onclick="return confirm('are you sure?');">
                                             <i class="fa fa-window-close"></i>
                                             Удалить
                                         </a>
