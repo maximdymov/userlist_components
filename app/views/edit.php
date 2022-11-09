@@ -46,7 +46,7 @@ $this->layout('template', ['title'=>'Редактирование пользов
                             <!-- username -->
                             <div class="form-group">
                                 <label class="form-label" for="simpleinput">Имя</label>
-                                <input type="text" id="simpleinput" class="form-control" name="username"
+                                <input type="text" id="simpleinput" class="form-control" name="name"
                                        value="<?= $user->name() ?>">
                             </div>
 

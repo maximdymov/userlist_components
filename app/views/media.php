@@ -1,32 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <meta name="description" content="Chartist.html">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, minimal-ui">
-    <link id="vendorsbundle" rel="stylesheet" media="screen, print" href="../../public/css/vendors.bundle.css">
-    <link id="appbundle" rel="stylesheet" media="screen, print" href="../../public/css/app.bundle.css">
-    <link id="myskin" rel="stylesheet" media="screen, print" href="../../public/css/skins/skin-master.css">
-    <link rel="stylesheet" media="screen, print" href="../../public/css/fa-solid.css">
-    <link rel="stylesheet" media="screen, print" href="../../public/css/fa-brands.css">
-</head>
+<?php $this->layout('template', ['title' => 'Смена изображения']) ?>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary bg-primary-gradient">
         <a class="navbar-brand d-flex align-items-center fw-500" href="users.php"><img alt="logo" class="d-inline-block align-top mr-2" src="../../public/img/logo.png"> Учебный проект</a> <button aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarColor02" data-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarColor02">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Главная <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/">Главная <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="page_login.php">Войти</a>
+                    <a class="nav-link" href="/auth">Войти</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Выйти</a>
+                    <a class="nav-link" href="/logout">Выйти</a>
                 </li>
             </ul>
         </div>
@@ -38,7 +25,7 @@
             </h1>
 
         </div>
-        <form action="">
+        <form action="" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-xl-6">
                     <div id="panel-1" class="panel">
@@ -48,7 +35,7 @@
                             </div>
                             <div class="panel-content">
                                 <div class="form-group">
-                                    <img src="../../public/img/demo/authors/josh.png" alt="" class="img-responsive" width="200">
+                                    <img src="/img/demo/authors/josh.png" alt="" class="img-responsive" width="200">
                                 </div>
 
                                 <div class="form-group">
@@ -101,4 +88,3 @@
 
     </script>
 </body>
-</html>
