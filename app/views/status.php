@@ -1,3 +1,7 @@
+<?php use Model\User\Status;
+
+$this->layout('template', ['title' => 'Изменение статуса']) ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,7 +42,7 @@
             </h1>
 
         </div>
-        <form action="">
+        <form action="" method="post">
             <div class="row">
                 <div class="col-xl-6">
                     <div id="panel-1" class="panel">
@@ -52,10 +56,10 @@
                                         <!-- status -->
                                         <div class="form-group">
                                             <label class="form-label" for="example-select">Выберите статус</label>
-                                            <select class="form-control" id="example-select">
-                                                <option>Онлайн</option>
-                                                <option>Отошел</option>
-                                                <option>Не беспокоить</option>
+                                            <select class="form-control" id="example-select" name="status">
+                                                <option value="<?= Status::ONLINE ?>">Онлайн</option>
+                                                <option value="<?= Status::OFFLINE ?>">Отошел</option>
+                                                <option value="<?= Status::REST ?>">Не беспокоить</option>
                                             </select>
                                         </div>
                                     </div>
@@ -72,8 +76,8 @@
         </form>
     </main>
 
-    <script src="../../public/js/vendors.bundle.js"></script>
-    <script src="../../public/js/app.bundle.js"></script>
+    <script src="/js/vendors.bundle.js"></script>
+    <script src="/public/js/app.bundle.js"></script>
     <script>
 
         $(document).ready(function()
@@ -105,4 +109,3 @@
 
     </script>
 </body>
-</html>
