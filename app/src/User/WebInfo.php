@@ -10,13 +10,15 @@ class WebInfo
     private $password;
     private $status;
     private $img;
+    private $id;
 
-    public function __construct($email, $password = '', string $status = Status::ONLINE, $img = '')
+    public function __construct($email = '', $password = '', $status = Status::ONLINE, $img = '', $id = '')
     {
         $this->email = $email;
         $this->status = $status;
         $this->img = $img;
         $this->password = $password;
+        $this->id = $id;
     }
 
     public function email()
@@ -31,10 +33,17 @@ class WebInfo
 
     public function img()
     {
+        if (empty($this->img)) return '/img/demo/avatars/avatar-b.png';
         return $this->img;
     }
 
-    public function password() {
+    public function password()
+    {
         return $this->password;
+    }
+
+    public function id()
+    {
+        return $this->id;
     }
 }
