@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use Model\ImageLoader;
 use Model\User\EmployeeInfo;
 use Model\User\User;
 use Model\User\UserRepository;
@@ -44,7 +45,7 @@ class EditController extends AbstractController
             );
 
             try {
-                $this->auth->changeEmail($user->email(), function ($selector, $token){
+                $this->auth->changeEmail($user->email(), function ($selector, $token) {
                     $this->auth->confirmEmail($selector, $token);
                 });
                 $this->auth->changePasswordWithoutOldPassword($user->password());
@@ -60,7 +61,19 @@ class EditController extends AbstractController
 
     public function editImage($id)
     {
-        // call action with image editing functionality
+
+        $this->action($id, function ($id) {
+
+            $img = ImageLoader::loadImage($_FILES['img']);
+
+            $user = new User(
+                '',
+                null,
+                new WebInfo('', '', '', $img));
+
+            $this->repo->updateImg($id, $user);
+        }, 'media');
+
     }
 
     private function action($id, $action, $page)
@@ -68,7 +81,7 @@ class EditController extends AbstractController
 
         $this->redirectIfForbidden($id);
 
-        if (!empty($_POST)) {
+        if (!empty($_POST) || !empty($_FILES)) {
 
             $action($id);
 

@@ -44,7 +44,6 @@ class UserRepository
         }
 
         return $result;
-
     }
 
     public function saveUser(User $user)
@@ -99,7 +98,8 @@ class UserRepository
             ]);
     }
 
-    public function updateEmail($id, User $user) {
+    public function updateEmail($id, User $user)
+    {
         $this->update($id, $user,
             [
                 'email' => $user->email()
@@ -108,7 +108,6 @@ class UserRepository
 
     public function getUserById($id): User
     {
-
         $select = $this->query->newSelect();
 
         $select
@@ -128,6 +127,12 @@ class UserRepository
         );
     }
 
+    public function updateImg($id, User $user)
+    {
+        $this->update($id, $user, [
+            'img' => $user->img()
+        ]);
+    }
 
     private function update($id, User $user, array $cols)
     {
