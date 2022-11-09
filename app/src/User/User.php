@@ -4,10 +4,10 @@ namespace Model\User;
 class User
 {
     private $name;
-    private EmployeeInfo $employeeInfo;
-    private WebInfo $webInfo;
+    private ?EmployeeInfo $employeeInfo;
+    private ?WebInfo $webInfo;
 
-    public function __construct($name, EmployeeInfo $employeeInfo, WebInfo $webInfo)
+    public function __construct($name = '', EmployeeInfo $employeeInfo = null, WebInfo $webInfo = null)
     {
         if (empty($name)) $this->name = 'Новый пользователь';
         else $this->name = $name;
@@ -49,6 +49,10 @@ class User
 
     public function password() {
         return $this->webInfo->password();
+    }
+
+    public function id() {
+        return $this->webInfo->id();
     }
 
 }
