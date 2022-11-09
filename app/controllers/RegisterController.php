@@ -11,7 +11,6 @@ use Delight\Auth\UserAlreadyExistsException;
 use Exception;
 use League\Plates\Engine;
 use Model\User\EmployeeInfo;
-use Model\User\Name;
 use Model\User\User;
 use Model\User\UserRepository;
 use Model\User\WebInfo;
@@ -28,8 +27,8 @@ class RegisterController extends AbstractController
     public function register()
     {
         $user = new User(
-            new Name(),
-            new EmployeeInfo(),
+            '',
+            null,
             new WebInfo($_POST['email'], $_POST['password'])
         );
 
@@ -45,8 +44,7 @@ class RegisterController extends AbstractController
             $this->showError($e);
         }
 
-        $userRepo = new UserRepository();
-        $userRepo->saveUser($user);
+        $this->repo->saveUser($user);
 
         Flash::success('Регистрация прошла успешно');
         header('Location: auth');

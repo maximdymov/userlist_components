@@ -2,15 +2,12 @@
 
 namespace App\Controllers;
 
-use Delight\Auth\AuthError;
 use Delight\Auth\InvalidEmailException;
 use Delight\Auth\InvalidPasswordException;
 use Delight\Auth\Role;
 use Delight\Auth\UserAlreadyExistsException;
 use Model\User\EmployeeInfo;
-use Model\User\Name;
 use Model\User\User;
-use Model\User\UserRepository;
 use Model\User\WebInfo;
 use Tamtamchik\SimpleFlash\Flash;
 
@@ -27,24 +24,21 @@ class CreateUserController extends AbstractController
 
     public function createUser()
     {
-
         $user = new User (
-          $_POST['name'],
-          new EmployeeInfo($_POST['profession'], $_POST['address'], $_POST['phone']),
-          new WebInfo($_POST['email'], $_POST['password'],$_POST['status'], $_POST['img'])
+            $_POST['name'],
+            new EmployeeInfo('', $_POST['address'], $_POST['phone']),
+            new WebInfo($_POST['email'], $_POST['password'], $_POST['status'], $_POST['img'])
         );
 
         try {
             $this->auth->admin()->createUser(
                 $user->email(), $user->password()
             );
-        }
-         catch (\Exception $e) {
+        } catch (\Exception $e) {
             $this->showError($e);
-         }
+        }
 
-        $userRepo = new UserRepository();
-        $userRepo->saveUser($user);
+        $this->repo->saveUser($user);
 
         Flash::success('Добавлен новый пользователь.');
         header('Location: /');

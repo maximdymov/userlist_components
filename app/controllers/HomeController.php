@@ -14,8 +14,8 @@ class HomeController extends AbstractController
         if (!$this->auth->isLoggedIn()) {
             header('Location: auth');
         }
-        $usersRepo = new UserRepository();
-        $users = $usersRepo->getAllUsers();
+
+        $users = $this->repo->getAllUsers();
 
         echo $this->templates->render('users', ['users' => $users, 'thisUser' => $this->auth]);
     }
