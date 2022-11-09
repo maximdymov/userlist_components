@@ -51,6 +51,9 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) 
     $r->addRoute('GET', '/media/{id:\d+}', ["App\Controllers\EditController", "editImage"]);
     $r->addRoute('POST', '/media/{id:\d+}', ["App\Controllers\EditController", "editImage"]);
 
+    $r->addRoute('GET', '/security/{id:\d+}', ["App\Controllers\EditController", "editSecurity"]);
+    $r->addRoute('POST', '/security/{id:\d+}', ["App\Controllers\EditController", "editSecurity"]);
+
     $r->addRoute('GET', '/profile/{id:\d+}', ["App\Controllers\ProfileController", "index"]);
 
 });
