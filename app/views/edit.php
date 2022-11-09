@@ -2,25 +2,11 @@
 $this->layout('template', ['title'=>'Редактирование пользователя']);
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <meta name="description" content="Chartist.html">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, minimal-ui">
-    <link id="vendorsbundle" rel="stylesheet" media="screen, print" href="/public/css/vendors.bundle.css">
-    <link id="appbundle" rel="stylesheet" media="screen, print" href="/public/css/app.bundle.css">
-    <link id="myskin" rel="stylesheet" media="screen, print" href="/public/css/skins/skin-master.css">
-    <link rel="stylesheet" media="screen, print" href="/public/css/fa-solid.css">
-    <link rel="stylesheet" media="screen, print" href="/public/css/fa-brands.css">
-</head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary bg-primary-gradient">
     <a class="navbar-brand d-flex align-items-center fw-500" href="users.php"><img alt="logo"
                                                                                    class="d-inline-block align-top mr-2"
-                                                                                   src="/public/img/logo.png"> Учебный
+                                                                                   src="/img/logo.png"> Учебный
         проект</a>
     <button aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
             data-target="#navbarColor02" data-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span>
@@ -28,15 +14,15 @@ $this->layout('template', ['title'=>'Редактирование пользов
     <div class="collapse navbar-collapse" id="navbarColor02">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">Главная <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/">Главная <span class="sr-only">(current)</span></a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="page_login.php">Войти</a>
+                <a class="nav-link" href="/auth">Войти</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Выйти</a>
+                <a class="nav-link" href="/">Выйти</a>
             </li>
         </ul>
     </div>
@@ -48,7 +34,7 @@ $this->layout('template', ['title'=>'Редактирование пользов
         </h1>
 
     </div>
-    <form action="edit_handler.php?id=<?= $edit_user['id'] ?>" method="post">
+    <form action="/edit_user/<?= $id?>" method="post">
         <div class="row">
             <div class="col-xl-6">
                 <div id="panel-1" class="panel">
@@ -61,28 +47,28 @@ $this->layout('template', ['title'=>'Редактирование пользов
                             <div class="form-group">
                                 <label class="form-label" for="simpleinput">Имя</label>
                                 <input type="text" id="simpleinput" class="form-control" name="username"
-                                       value="<?= $edit_user['username'] ?>">
+                                       value="<?= $user->name() ?>">
                             </div>
 
                             <!-- title -->
                             <div class="form-group">
                                 <label class="form-label" for="simpleinput">Место работы</label>
-                                <input type="text" id="simpleinput" class="form-control" name="job-title"
-                                       value="<?= $edit_user['job_title'] ?>">
+                                <input type="text" id="simpleinput" class="form-control" name="profession"
+                                       value="<?= $user->profession() ?>">
                             </div>
 
                             <!-- tel -->
                             <div class="form-group">
                                 <label class="form-label" for="simpleinput">Номер телефона</label>
                                 <input type="text" id="simpleinput" class="form-control" name="phone"
-                                       value="<?= $edit_user['phone'] ?>">
+                                       value="<?= $user->phone() ?>">
                             </div>
 
                             <!-- address -->
                             <div class="form-group">
                                 <label class="form-label" for="simpleinput">Адрес</label>
                                 <input type="text" id="simpleinput" class="form-control" name="address"
-                                       value="<?= $edit_user['address'] ?>">
+                                       value="<?= $user->address() ?>">
                             </div>
                             <div class="col-md-12 mt-3 d-flex flex-row-reverse">
                                 <button class="btn btn-warning">Редактировать</button>
@@ -123,4 +109,3 @@ $this->layout('template', ['title'=>'Редактирование пользов
 
 </script>
 </body>
-</html>
