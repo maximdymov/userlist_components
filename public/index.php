@@ -40,7 +40,7 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) 
     $r->addRoute('GET', '/create_user', ["App\Controllers\CreateUserController", "index"]);
     $r->addRoute('POST', '/create_user', ["App\Controllers\CreateUserController", "createUser"]);
 
-    $r->addRoute('GET', '/delete/{id:\d+}', ["App\Controllers\DeleteUserController", "deleteUser"]);
+    $r->addRoute('GET', '/delete/{id:\d+}', ["App\Controllers\DeleteUserController", "index"]);
 
     $r->addRoute('GET', '/edit_user/{id:\d+}', ["App\Controllers\EditController", "editInfo"]);
     $r->addRoute('POST', '/edit_user/{id:\d+}', ["App\Controllers\EditController", "editInfo"]);
@@ -55,15 +55,13 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) 
     $r->addRoute('POST', '/security/{id:\d+}', ["App\Controllers\EditController", "editSecurity"]);
 
     $r->addRoute('GET', '/profile/{id:\d+}', ["App\Controllers\ProfileController", "index"]);
-
 });
 
 
-// Fetch method and URI from somewhere
 $httpMethod = $_SERVER['REQUEST_METHOD'];
 $uri = $_SERVER['REQUEST_URI'];
 
-// Strip query string (?foo=bar) and decode URI
+
 if (false !== $pos = strpos($uri, '?')) {
     $uri = substr($uri, 0, $pos);
 }
@@ -77,13 +75,11 @@ switch ($routeInfo[0]) {
         break;
     case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
         $allowedMethods = $routeInfo[1];
-        // ... 405 Method Not Allowed
         break;
     case FastRoute\Dispatcher::FOUND:
         $handler = $routeInfo[1];
         $vars = $routeInfo[2];
 
         $container->call($handler, $vars);
-
         break;
 }
