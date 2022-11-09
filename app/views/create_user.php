@@ -35,7 +35,7 @@ $this->layout('template', ['title' => 'Создание пользователя
 
     </div>
     <?= Flash::display() ?>
-    <form action="create_user" method="post">
+    <form action="/create_user" method="post">
         <div class="row">
             <div class="col-xl-6">
                 <div id="panel-1" class="panel">

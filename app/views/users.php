@@ -71,13 +71,16 @@ $this->layout('template', ['title' => 'Главная страница']) ?>
                             <div class="info-card-text flex-1">
                                 <?php if (!($thisUser->getEmail() == $user->email() || $thisUser->hasRole(Role::ADMIN))): ?>
                                     <a href="/profile/<?= $user->id() ?>" class="fs-xl text-truncate text-truncate-lg text-info"
-                                       data-toggle="dropdown" aria-expanded="false">
+                                       aria-expanded="false">
                                         <?= $user->name() ?>
                                     </a>
                                 <?php else:?>
                                     <a href="/profile/<?= $user->id() ?>" class="fs-xl text-truncate text-truncate-lg text-info"
-                                       data-toggle="dropdown" aria-expanded="false">
+                                       aria-expanded="false">
                                         <?= $user->name() ?>
+                                    </a>
+                                    <a href="/profile/<?= $user->id() ?>" class="fs-xl text-truncate text-truncate-lg text-info"
+                                       data-toggle="dropdown" aria-expanded="false">
                                         <i class="fal fas fa-cog fa-fw d-inline-block ml-1 fs-md"></i>
                                         <i class="fal fa-angle-down d-inline-block ml-1 fs-md"></i>
                                     </a>
