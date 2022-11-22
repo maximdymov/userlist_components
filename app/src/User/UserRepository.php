@@ -81,7 +81,7 @@ class UserRepository
 
     public function updateInfo($id, User $user)
     {
-        $this->update($id, $user,
+        $this->update($id,
             [
                 'profession' => $user->profession(),
                 'address' => $user->address(),
@@ -92,7 +92,7 @@ class UserRepository
 
     public function updateStatus($id, User $user)
     {
-        $this->update($id, $user,
+        $this->update($id,
             [
                 'status' => $user->status()
             ]);
@@ -100,7 +100,7 @@ class UserRepository
 
     public function updateEmail($id, User $user)
     {
-        $this->update($id, $user,
+        $this->update($id,
             [
                 'email' => $user->email()
             ]);
@@ -129,12 +129,12 @@ class UserRepository
 
     public function updateImg($id, User $user)
     {
-        $this->update($id, $user, [
+        $this->update($id, [
             'img' => $user->img()
         ]);
     }
 
-    private function update($id, User $user, array $cols)
+    private function update($id, array $cols)
     {
 
         $update = $this->query->newUpdate();
