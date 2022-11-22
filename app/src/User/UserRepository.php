@@ -92,18 +92,17 @@ class UserRepository
 
     public function updateStatus($id, User $user)
     {
-        $this->update($id,
-            [
-                'status' => $user->status()
-            ]);
+        $this->update($id, ['status' => $user->status()]);
     }
 
     public function updateEmail($id, User $user)
     {
-        $this->update($id,
-            [
-                'email' => $user->email()
-            ]);
+        $this->update($id, ['email' => $user->email()]);
+    }
+
+    public function updateImg($id, User $user)
+    {
+        $this->update($id, ['img' => $user->img()]);
     }
 
     public function getUserById($id): User
@@ -125,13 +124,6 @@ class UserRepository
             new EmployeeInfo($user['profession'], $user['address'], $user['phone']),
             new WebInfo($user['email'], '', $user['status'], $user['img'], $user['id'])
         );
-    }
-
-    public function updateImg($id, User $user)
-    {
-        $this->update($id, [
-            'img' => $user->img()
-        ]);
     }
 
     private function update($id, array $cols)
