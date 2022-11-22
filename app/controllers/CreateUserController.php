@@ -15,7 +15,7 @@ class CreateUserController extends AbstractController
 {
     public function index()
     {
-        if ($this->auth->isLoggedIn() && $this->auth->hasRole(Role::ADMIN)) {
+        if ($this->hasAccess()) {
             echo $this->templates->render('create_user');
         } else {
             header('Location: /');
@@ -62,5 +62,8 @@ class CreateUserController extends AbstractController
         exit;
     }
 
-
+    private function hasAccess(): bool
+    {
+        return $this->auth->isLoggedIn() && $this->auth->hasRole(Role::ADMIN);
+    }
 }
