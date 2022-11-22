@@ -14,30 +14,30 @@ class EditController extends AbstractController
 
     public function editInfo($id)
     {
-        $this->action($id, function ($id) {
+        $this->editAction($id, 'edit', function ($id) {
             $user = new User (
                 $_POST['name'],
                 new EmployeeInfo($_POST['profession'], $_POST['address'], $_POST['phone'])
             );
             $this->repo->updateInfo($id, $user);
-        }, 'edit');
+        });
     }
 
     public function editStatus($id)
     {
-        $this->action($id, function ($id) {
+        $this->editAction($id, 'status', function ($id) {
             $user = new User (
                 '',
                 null,
                 new WebInfo('', '', $_POST['status'], '')
             );
             $this->repo->updateStatus($id, $user);
-        }, 'status');
+        });
     }
 
     public function editSecurity($id)
     {
-        $this->action($id, function ($id) {
+        $this->editAction($id, 'security', function ($id) {
             $user = new User (
                 '',
                 null,
@@ -50,19 +50,16 @@ class EditController extends AbstractController
                 });
                 $this->auth->changePasswordWithoutOldPassword($user->password());
             } catch (\Exception $e) {
-                Flash::error('Ошибка!');
-                echo $this->templates->render('security', ['user' => $user, 'id' => $id]);
-                exit;
+
             }
 
             $this->repo->updateEmail($id, $user);
-        }, 'security');
+        });
     }
 
     public function editImage($id)
     {
-
-        $this->action($id, function ($id) {
+        $this->editAction($id, 'media', function ($id) {
 
             $img = ImageLoader::loadImage($_FILES['img']);
 
@@ -72,24 +69,32 @@ class EditController extends AbstractController
                 new WebInfo('', '', '', $img));
 
             $this->repo->updateImg($id, $user);
-        }, 'media');
-
+        });
     }
 
-    private function action($id, $action, $page)
+    private function editAction($id, $page, $action)
     {
+        $this->action(function () use ($page, $action, $id) {
+            $this->redirectIfForbidden($id);
 
-        $this->redirectIfForbidden($id);
+            if (!empty($_POST) || !empty($_FILES)) {
 
-        if (!empty($_POST) || !empty($_FILES)) {
+                $action($id);
 
-            $action($id);
+                header('Location: /');
+                exit;
+            }
 
-            header('Location: /');
-            exit;
-        }
+            $this->action(function () use ($page, $id) {
+                $user = $this->repo->getUserById($id);
+                echo $this->templates->render($page, ['user' => $user, 'id' => $id]);
+            });
+        });
+    }
 
-        $user = $this->repo->getUserById($id);
-        echo $this->templates->render($page, ['user' => $user, 'id' => $id]);
+    protected function showError(\Exception $e)
+    {
+        Flash::error('Ошибка!');
+        exit;
     }
 }

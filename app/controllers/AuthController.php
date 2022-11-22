@@ -21,22 +21,22 @@ class AuthController extends AbstractController
 
     public function login()
     {
-        try {
+        $this->action(function () {
             $this->auth->login($_POST['email'], $_POST['password']);
-        } catch (\Exception $e) {
-            $this->showError($e);
-        }
-
+        });
         header("Location: /");
     }
 
-    public function logout() {
-        $this->auth->logOut();
+    public function logout()
+    {
+        $this->action(function () {
+            $this->auth->logOut();
+        });
         header("Location: /");
     }
 
 
-    private function showError(\Exception $e)
+    protected function showError(\Exception $e)
     {
         switch ($e) {
             case ($e instanceof InvalidEmailException):

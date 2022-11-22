@@ -11,14 +11,19 @@ class HomeController extends AbstractController
 {
     public function index()
     {
-        if (!$this->auth->isLoggedIn()) {
-            header('Location: auth');
-        }
+        $this->action(function () {
+            if (!$this->auth->isLoggedIn()) {
+                header('Location: auth');
+            }
 
-        $users = $this->repo->getAllUsers();
+            $users = $this->repo->getAllUsers();
 
-        echo $this->templates->render('users', ['users' => $users, 'thisUser' => $this->auth]);
+            echo $this->templates->render('users', ['users' => $users, 'thisUser' => $this->auth]);
+        });
     }
 
-
+    protected function showError(\Exception $e)
+    {
+        // TODO: Implement showError() method.
+    }
 }

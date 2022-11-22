@@ -21,6 +21,16 @@ abstract class AbstractController
         $this->repo = $repo;
     }
 
+    protected abstract function showError(\Exception $e);
+
+    protected function action($function) {
+        try {
+            $function();
+        } catch (\Exception $e) {
+            $this->showError($e);
+        }
+    }
+
     protected function redirectIfForbidden($id) {
         if ($this->canEdit($id) == false) {
             Flash::error('Отказано в доступе');

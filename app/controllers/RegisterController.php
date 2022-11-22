@@ -26,32 +26,29 @@ class RegisterController extends AbstractController
 
     public function register()
     {
-        $user = new User(
-            '',
-            null,
-            new WebInfo($_POST['email'], $_POST['password'])
-        );
+        $this->action(function () {
+            $user = new User(
+                '',
+                null,
+                new WebInfo($_POST['email'], $_POST['password'])
+            );
 
-        try {
             $this->auth->register(
                 $user->email(),
                 $user->password(),
                 '',
-                function ($selector, $token){
+                function ($selector, $token) {
                     $this->auth->confirmEmail($selector, $token);
                 });
-        } catch (Exception $e) {
-            $this->showError($e);
-        }
 
-        $this->repo->saveUser($user);
+            $this->repo->saveUser($user);
 
-        Flash::success('Регистрация прошла успешно');
-        header('Location: auth');
-
+            Flash::success('Регистрация прошла успешно');
+            header('Location: auth');
+        });
     }
 
-    private function showError(\Exception $e)
+    protected function showError(\Exception $e)
     {
         switch ($e) {
             case ($e instanceof InvalidEmailException):
